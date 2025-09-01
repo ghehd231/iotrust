@@ -4,12 +4,8 @@ import { Favorite } from '../../types/data';
 
 import ListItemCard from '../ListItemCard';
 
-const SectionWrapper = styled.div`
+const SectionWrapper = styled.section`
   padding: 24px 20px;
-  border-bottom: 2px solid #f8f9fa;
-  &:last-of-type {
-    border-bottom: none;
-  }
 `;
 
 const SectionTitle = styled.h3`

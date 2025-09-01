@@ -4,12 +4,7 @@ import { Banner } from '../../types/data';
 
 import BannerSwiper from '../swiper/BannerSwiper';
 
-const Section = styled.section`
-  border-bottom: 2px solid #f8f9fa;
-  &:last-of-type {
-    border-bottom: none;
-  }
-`;
+const Section = styled.section``;
 
 type Props = {
   banner: Banner[];
