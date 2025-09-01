@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
+
 import { mockBanners, mockFavorites, mockServices } from './api/mockData';
+
+import BannerSection from '@/components/section/Banner';
 
 // 전체 컨테이너
 const Container = styled.div`
@@ -35,11 +38,25 @@ function App() {
     queryFn: fetchPosts,
   });
 
-  console.log('test', data);
+  if (isLoading) {
+    return (
+      <Container>
+        <p>데이터를 불러오는 중입니다...</p>
+      </Container>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <Container>
+        <p>데이터를 불러오는 데 실패했습니다.</p>
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      <Section>슬라이드 섹션</Section>
+      <BannerSection banner={data.banner} />
       <Section>즐겨찾기 섹션</Section>
       <Section>목록 섹션</Section>
     </Container>
