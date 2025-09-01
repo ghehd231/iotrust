@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
-import { useClickAway } from 'react-use';
-import Dimmer from '../Dimmer';
 import { createPortal } from 'react-dom';
+import { useClickAway } from 'react-use';
+
+import Dimmer from '../Dimmer';
 
 type ModalStyleProps = {
   padding?: number | string;
@@ -95,9 +96,6 @@ const Modal = ({
       <Dimmer
         alignItems={style?.alignItems}
         zIndex={style?.zIndex ?? 11}
-        backgroundColor={
-          style?.backgroundColor ? 'transparent' : 'rgba(0,0,0, 0.8)'
-        }
         blur={style?.blur}
       >
         <ModalBox ref={ref} style={style}>

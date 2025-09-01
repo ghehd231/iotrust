@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { Service } from '../../types/data';
 
 import ListItemCard from '../ListItemCard';
+
+import useOpenModal from '../../hooks/useOpenModal';
+import ServiceDrawer from '../drawer/ServiceDrawer';
 
 const SectionWrapper = styled.section`
   padding: 24px 20px;
@@ -26,6 +30,12 @@ type Props = {
 };
 
 const ServiceSection = ({ services }: Props) => {
+  const [selected, setSelected] = useState<Service>();
+  const { isOpen, handleOpen } = useOpenModal();
+  const handleServiceOpen = (item: Service) => {
+    handleOpen(true);
+    setSelected(item);
+  };
   return (
     <SectionWrapper>
       <SectionTitle>목록</SectionTitle>
@@ -36,9 +46,17 @@ const ServiceSection = ({ services }: Props) => {
             iconUrl={item.iconUrl}
             title={item.name}
             subtitle={item.linkUrl}
+            onClick={() => handleServiceOpen(item)}
           />
         ))}
       </ListWrapper>
+      {!!selected && (
+        <ServiceDrawer
+          isOpen={isOpen}
+          handleOpen={handleOpen}
+          service={selected}
+        />
+      )}
     </SectionWrapper>
   );
 };

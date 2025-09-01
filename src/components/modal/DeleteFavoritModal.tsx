@@ -62,7 +62,6 @@ const DeleteFavoriteModal = ({
       title="즐겨찾기 삭제"
       isOpen={isOpen}
       handleOpen={handleOpen}
-      shouldCloseOnDimmer={false}
       isHideClose
     >
       <ModalContentWrapper>
