@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { Banner } from '@/types/data';
 
-import BannerSwiper from '@/components/swiper/BannerSwiper';
+import { Banner } from '../../types/data';
+
+import BannerSwiper from '../swiper/BannerSwiper';
 
 const Section = styled.section`
   border-bottom: 2px solid #f8f9fa;

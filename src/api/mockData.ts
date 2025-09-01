@@ -66,6 +66,13 @@ export const mockBanners: Banner[] = [
 export const mockFavorites: Favorite[] = [
   {
     id: 1,
+    name: 'OpenSea',
+    iconUrl:
+      'https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/icon_opensea.png',
+    linkUrl: 'https://opensea.io/',
+  },
+  {
+    id: 2,
     name: 'Uniswap',
     iconUrl:
       'https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/icon_uniswap.png',

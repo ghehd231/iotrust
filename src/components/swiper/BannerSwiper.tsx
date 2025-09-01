@@ -2,10 +2,9 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 
-import { Banner } from '@/types/data';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Banner } from '../../types/data';
 
 // Swiper 페이지네이션 커스텀 스타일 (전역 또는 컴포넌트 스코프)
 const SwiperContainer = styled.div`

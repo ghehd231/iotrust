@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
 import { mockBanners, mockFavorites, mockServices } from './api/mockData';
-
-import BannerSection from '@/components/section/Banner';
+import BannerSection from './components/section/Banner';
+import FavoriteSection from './components/section/Favorite';
 
 // 전체 컨테이너
 const Container = styled.div`
@@ -57,7 +57,7 @@ function App() {
   return (
     <Container>
       <BannerSection banner={data.banner} />
-      <Section>즐겨찾기 섹션</Section>
+      <FavoriteSection favorites={data.favorites} />
       <Section>목록 섹션</Section>
     </Container>
   );
