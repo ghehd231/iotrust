@@ -1,8 +1,19 @@
 export interface Banner {
   id: number;
-  imageUrl: string;
-  ctaText: string;
-  linkUrl: string;
+  content: {
+    ko: {
+      imageUrl: string;
+      description?: string;
+      buttonText: string;
+      linkUrl: string;
+    };
+    en: {
+      imageUrl: string;
+      description?: string;
+      buttonText: string;
+      linkUrl: string;
+    };
+  };
 }
 
 export interface Favorite {
