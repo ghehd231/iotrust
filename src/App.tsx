@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 
-import { mockBanners, mockFavorites, mockServices } from './api/mockData';
+import { getData } from './api/discover';
 
 import BannerSection from './components/section/Banner';
 import FavoriteSection from './components/section/Favorite';
@@ -16,18 +16,13 @@ const Container = styled.div`
 `;
 
 function App() {
-  const fetchPosts = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return {
-      banner: mockBanners,
-      favorites: mockFavorites,
-      services: mockServices,
-    };
+  const fetchData = async () => {
+    return await getData();
   };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPosts,
+    queryKey: ['discover'],
+    queryFn: fetchData,
   });
 
   if (isLoading) {
@@ -50,7 +45,7 @@ function App() {
     <Container>
       <div id="portal" />
       <BannerSection banner={data.banner} />
-      <FavoriteSection favorites={data.favorites} />
+      <FavoriteSection />
       <ServiceSection services={data.services} />
     </Container>
   );

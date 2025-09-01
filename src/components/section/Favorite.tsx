@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import { Favorite } from '../../types/data';
 import useOpenModal from '../../hooks/useOpenModal';
+import useDiscoveryStore from '../../store/discoveryStore'; // Zustand 스토어 불러오기
 
 import ListItemCard from '../ListItemCard';
 import DeleteFavoriteModal from '../modal/DeleteFavoritModal';
@@ -34,26 +35,24 @@ const BookmarkIcon = () => (
   </svg>
 );
 
-type Props = {
-  favorites: Favorite[];
-};
-
-const FavoriteSection = ({ favorites }: Props) => {
+const FavoriteSection = () => {
   const [selectedFavorite, setSelectedFavorite] = useState<Favorite | null>(
     null
   );
-
   const { isOpen, handleOpen } = useOpenModal();
 
+  const favorites = useDiscoveryStore((state) => state.favorites);
+  const removeFavorite = useDiscoveryStore((state) => state.removeFavorite);
+
   const handleDeleteConfirm = (id: number) => {
-    console.log(`${id} 항목이 삭제되었습니다.`);
-    // TODO: 실제로 즐겨찾기 목록에서 아이템을 삭제하는 로직 추가
+    removeFavorite(id); // Zustand 액션 호출
+    handleOpen(false);
   };
 
   const handleActionButtonClick = (e: React.MouseEvent, item: Favorite) => {
     e.stopPropagation();
-    setSelectedFavorite(item); // 선택된 아이템 정보 저장
-    handleOpen(true); // 모달 열기
+    setSelectedFavorite(item);
+    handleOpen(true);
   };
 
   return (

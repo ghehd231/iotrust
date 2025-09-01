@@ -1,3 +1,9 @@
+export type DiscoveryData = {
+  banner: Banner[];
+  favorites: Favorite[];
+  services: Service[];
+};
+
 export interface Banner {
   id: number;
   content: {
