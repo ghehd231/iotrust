@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { Favorite } from '../../types/data';
+import useOpenModal from '../../hooks/useOpenModal';
 
 import ListItemCard from '../ListItemCard';
+import DeleteFavoriteModal from '../modal/DeleteFavoritModal';
 
 const SectionWrapper = styled.section`
   padding: 24px 20px;
@@ -36,9 +39,21 @@ type Props = {
 };
 
 const FavoriteSection = ({ favorites }: Props) => {
-  const handleDeleteClick = (id: number) => {
+  const [selectedFavorite, setSelectedFavorite] = useState<Favorite | null>(
+    null
+  );
+
+  const { isOpen, handleOpen } = useOpenModal();
+
+  const handleDeleteConfirm = (id: number) => {
     console.log(`${id} 항목이 삭제되었습니다.`);
-    // TODO: 삭제 로직 추가
+    // TODO: 실제로 즐겨찾기 목록에서 아이템을 삭제하는 로직 추가
+  };
+
+  const handleActionButtonClick = (e: React.MouseEvent, item: Favorite) => {
+    e.stopPropagation();
+    setSelectedFavorite(item); // 선택된 아이템 정보 저장
+    handleOpen(true); // 모달 열기
   };
 
   return (
@@ -53,13 +68,18 @@ const FavoriteSection = ({ favorites }: Props) => {
             subtitle={item.linkUrl}
             actionButton={<BookmarkIcon />}
             onClick={() => window.open(item.linkUrl, '_blank')}
-            onActionButtonClick={(e) => {
-              e.stopPropagation(); // 카드 전체 클릭 이벤트가 발생하지 않도록 막음
-              handleDeleteClick(item.id);
-            }}
+            onActionButtonClick={(e) => handleActionButtonClick(e, item)}
           />
         ))}
       </ListWrapper>
+      {selectedFavorite && (
+        <DeleteFavoriteModal
+          isOpen={isOpen}
+          handleOpen={handleOpen}
+          selectedFavorite={selectedFavorite}
+          onConfirm={handleDeleteConfirm}
+        />
+      )}
     </SectionWrapper>
   );
 };

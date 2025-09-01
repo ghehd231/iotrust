@@ -48,6 +48,7 @@ function App() {
 
   return (
     <Container>
+      <div id="portal" />
       <BannerSection banner={data.banner} />
       <FavoriteSection favorites={data.favorites} />
       <ServiceSection services={data.services} />
