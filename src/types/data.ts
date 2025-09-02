@@ -34,6 +34,7 @@ export interface Service {
   name: string;
   iconUrl: string;
   description: string;
+  networks?: string;
   linkUrl: string;
   conditions: {
     language: 'ko' | 'en';

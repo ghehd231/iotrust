@@ -135,7 +135,7 @@ const ServiceDrawer = ({ isOpen, handleOpen, service }: Props) => {
             </IconWrapper>
             <TitleWrapper>
               <ServiceName>{service.name}</ServiceName>
-              <ServiceCategory>아스타</ServiceCategory>
+              <ServiceCategory>{service.networks}</ServiceCategory>
             </TitleWrapper>
           </IconTitleWrapper>
           <CloseButton onClick={() => handleOpen(false)}>&times;</CloseButton>
