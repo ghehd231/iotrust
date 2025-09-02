@@ -15,7 +15,7 @@ const Block = styled.div<{
   alignItems?: string;
   blur?: string;
 }>`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: ${({ alignItems }) => alignItems ?? 'center'};
   justify-content: center;

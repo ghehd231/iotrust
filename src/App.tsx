@@ -44,9 +44,9 @@ function App() {
   return (
     <Container>
       <div id="portal" />
-      <BannerSection banner={data.banner} />
+      <BannerSection />
       <FavoriteSection />
-      <ServiceSection services={data.services} />
+      <ServiceSection />
     </Container>
   );
 }

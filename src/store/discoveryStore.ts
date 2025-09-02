@@ -7,6 +7,7 @@ interface DiscoveryState {
   services: Service[];
   favorites: Favorite[];
   banners: Banner[];
+  language: 'ko' | 'en';
   addFavorite: (favorite: Favorite) => void;
   removeFavorite: (id: number) => void;
 }
@@ -15,7 +16,7 @@ const useDiscoveryStore = create<DiscoveryState>((set) => ({
   services: mockServices,
   banners: mockBanners,
   favorites: mockFavorites,
-
+  language: 'ko',
   addFavorite: (favorite) =>
     set((state) => ({ favorites: [...state.favorites, favorite] })),
 

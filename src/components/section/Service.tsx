@@ -7,6 +7,7 @@ import ListItemCard from '../ListItemCard';
 
 import useOpenModal from '../../hooks/useOpenModal';
 import ServiceDrawer from '../drawer/ServiceDrawer';
+import useDiscoveryStore from '../../store/discoveryStore';
 
 const SectionWrapper = styled.section`
   padding: 24px 20px;
@@ -25,17 +26,17 @@ const ListWrapper = styled.div`
   border-bottom: 1px solid #f0f0f0;
 `;
 
-type Props = {
-  services: Service[];
-};
-
-const ServiceSection = ({ services }: Props) => {
+const ServiceSection = () => {
   const [selected, setSelected] = useState<Service>();
+  const { services } = useDiscoveryStore();
+
   const { isOpen, handleOpen } = useOpenModal();
+
   const handleServiceOpen = (item: Service) => {
     handleOpen(true);
     setSelected(item);
   };
+
   return (
     <SectionWrapper>
       <SectionTitle>목록</SectionTitle>

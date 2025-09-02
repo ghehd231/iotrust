@@ -1,19 +1,16 @@
 import styled from '@emotion/styled';
 
-import { Banner } from '../../types/data';
+import useDiscoveryStore from '../../store/discoveryStore';
 
 import BannerSwiper from '../swiper/BannerSwiper';
 
 const Section = styled.section``;
 
-type Props = {
-  banner: Banner[];
-};
-
-const BannerSection = ({ banner }: Props) => {
+const BannerSection = () => {
+  const { banners } = useDiscoveryStore();
   return (
     <Section>
-      <BannerSwiper banner={banner} />
+      <BannerSwiper banner={banners} />
     </Section>
   );
 };

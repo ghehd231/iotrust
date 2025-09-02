@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 
+import { Banner } from '../../types/data';
+import useDiscoveryStore from '../../store/discoveryStore';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Banner } from '../../types/data';
 
 // Swiper 페이지네이션 커스텀 스타일 (전역 또는 컴포넌트 스코프)
 const SwiperContainer = styled.div`
@@ -104,7 +106,7 @@ type Props = {
 };
 
 const BannerSwiper = ({ banner }: Props) => {
-  const currentLang = 'ko';
+  const { language } = useDiscoveryStore();
 
   const handleBannerClick = (url: string) => {
     window.open(url, '_blank');
@@ -137,28 +139,26 @@ const BannerSwiper = ({ banner }: Props) => {
           <SwiperSlide key={bannerItem.id}>
             <SlideWrapper>
               <BannerImage
-                src={bannerItem.content[currentLang].imageUrl}
+                src={bannerItem.content[language].imageUrl}
                 alt="배너 이미지"
                 onClick={() => {
-                  if (!bannerItem.content[currentLang].description) {
-                    handleBannerClick(bannerItem.content[currentLang].linkUrl);
+                  if (!bannerItem.content[language].description) {
+                    handleBannerClick(bannerItem.content[language].linkUrl);
                   }
                 }}
               />
-              {bannerItem.content[currentLang].description && (
+              {bannerItem.content[language].description && (
                 <TextButtonContainer>
                   <BannerTitle>
-                    {bannerItem.content[currentLang].description}
+                    {bannerItem.content[language].description}
                   </BannerTitle>
                   <CtaButton
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleBannerClick(
-                        bannerItem.content[currentLang].linkUrl
-                      );
+                      handleBannerClick(bannerItem.content[language].linkUrl);
                     }}
                   >
-                    {bannerItem.content[currentLang].buttonText}
+                    {bannerItem.content[language].buttonText}
                   </CtaButton>
                 </TextButtonContainer>
               )}

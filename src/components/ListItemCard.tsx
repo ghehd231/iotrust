@@ -12,17 +12,16 @@ const CardContainer = styled.div`
 `;
 
 const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 48px;
   height: 48px;
   margin-right: 16px;
   border-radius: 12px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff; // 배경색은 흰색 유지
+  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-
   flex-shrink: 0;
 
   & img {
@@ -39,9 +38,9 @@ const Icon = styled.img`
 `;
 
 const TextContent = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   overflow: hidden;
 `;
 
