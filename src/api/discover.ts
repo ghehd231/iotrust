@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { DiscoveryData } from '../types/data';
 import api from './index';
 import { mockBanners, mockFavorites, mockServices } from './mockData';
@@ -14,4 +15,34 @@ export const getData = async (): Promise<DiscoveryData> => {
     };
   }
   return await api.get(`/home`);
+};
+
+export const useDeleteFavorite = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (favoriteId: number) => {
+      await new Promise<void>((resolve) => setTimeout(resolve, 500));
+      return favoriteId;
+    },
+    onSuccess: (deletedFavoriteId) => {
+      queryClient.setQueryData<DiscoveryData | undefined>(
+        ['discover'],
+        (oldData) => {
+          if (!oldData) {
+            return undefined;
+          }
+
+          const updatedFavorites = oldData.favorites.filter(
+            (fav) => fav.id !== deletedFavoriteId
+          );
+
+          return {
+            ...oldData,
+            favorites: updatedFavorites,
+          };
+        }
+      );
+    },
+  });
 };

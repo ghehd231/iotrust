@@ -23,6 +23,7 @@ function App() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['discover'],
     queryFn: fetchData,
+    refetchOnMount: false,
   });
 
   if (isLoading) {
@@ -43,9 +44,9 @@ function App() {
   return (
     <Container>
       <div id="portal" />
-      <BannerSection />
-      <FavoriteSection />
-      <ServiceSection />
+      <BannerSection banners={data.banner} />
+      <FavoriteSection favorites={data.favorites} />
+      <ServiceSection services={data.services} />
     </Container>
   );
 }

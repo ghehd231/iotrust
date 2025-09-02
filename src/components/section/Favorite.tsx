@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 
 import { Favorite } from '../../types/data';
 import useOpenModal from '../../hooks/useOpenModal';
-import useDiscoveryStore from '../../store/discoveryStore'; // Zustand 스토어 불러오기
 
 import ListItemCard from '../ListItemCard';
 import DeleteFavoriteModal from '../modal/DeleteFavoritModal';
+import { useDeleteFavorite } from '../../api/discover';
 
 const SectionWrapper = styled.section`
   padding: 24px 20px;
@@ -35,17 +35,19 @@ const BookmarkIcon = () => (
   </svg>
 );
 
-const FavoriteSection = () => {
+type Props = {
+  favorites: Favorite[];
+};
+const FavoriteSection = ({ favorites }: Props) => {
   const [selectedFavorite, setSelectedFavorite] = useState<Favorite | null>(
     null
   );
   const { isOpen, handleOpen } = useOpenModal();
 
-  const favorites = useDiscoveryStore((state) => state.favorites);
-  const removeFavorite = useDiscoveryStore((state) => state.removeFavorite);
+  const deleteMutation = useDeleteFavorite();
 
   const handleDeleteConfirm = (id: number) => {
-    removeFavorite(id); // Zustand 액션 호출
+    deleteMutation.mutate(id);
     handleOpen(false);
   };
 
