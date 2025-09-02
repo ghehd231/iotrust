@@ -40,7 +40,6 @@ function App() {
       </Container>
     );
   }
-
   return (
     <Container>
       <div id="portal" />
